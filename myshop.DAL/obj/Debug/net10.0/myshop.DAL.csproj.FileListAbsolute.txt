@@ -1,0 +1,6 @@
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.DAL\obj\Debug\net10.0\myshop.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.DAL\obj\Debug\net10.0\myshop.DAL.AssemblyInfoInputs.cache
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.DAL\obj\Debug\net10.0\myshop.DAL.AssemblyInfo.cs
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.DAL\obj\Debug\net10.0\myshop.DAL.csproj.CoreCompileInputs.cache
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.DAL\obj\Debug\net10.0\myshop.DAL.sourcelink.json
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.DAL\obj\Debug\net10.0\myshop.DAL.csproj.AssemblyReference.cache

@@ -112,4 +112,8 @@
     <Folder Include="wwwroot\NewFolder\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\myshop.BLL\myshop.BLL.csproj" />
+  </ItemGroup>
+
 </Project>
