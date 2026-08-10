@@ -10,3 +10,4 @@ C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net10.0\mys
 C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net10.0\refint\myshop.BLL.dll
 C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net10.0\myshop.BLL.pdb
 C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net10.0\ref\myshop.BLL.dll
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net10.0\myshop.BLL.csproj.AssemblyReference.cache

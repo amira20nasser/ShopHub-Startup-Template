@@ -401,7 +401,7 @@
               "target": "Package",
               "version": "[7.0.9, )"
             },
-            "Microsoft.AspNetCore.Mvc.Abstractions": {
+            "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
               "version": "[2.3.11, )"
             }

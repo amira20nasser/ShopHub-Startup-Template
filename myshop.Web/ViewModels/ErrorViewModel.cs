@@ -1,4 +1,4 @@
-namespace myshop.Entities.Models
+namespace myshop.Entities.ViewModels
 {
     public class ErrorViewModel
     {
