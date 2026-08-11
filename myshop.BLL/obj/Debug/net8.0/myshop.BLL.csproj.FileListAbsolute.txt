@@ -1,0 +1,16 @@
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\bin\Debug\net8.0\myshop.BLL.deps.json
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\bin\Debug\net8.0\myshop.BLL.dll
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\bin\Debug\net8.0\myshop.BLL.pdb
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\bin\Debug\net8.0\myshop.DAL.dll
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\bin\Debug\net8.0\myshop.DAL.pdb
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\myshop.BLL.csproj.AssemblyReference.cache
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\myshop.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\myshop.BLL.AssemblyInfoInputs.cache
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\myshop.BLL.AssemblyInfo.cs
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\myshop.BLL.csproj.CoreCompileInputs.cache
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\myshop.BLL.sourcelink.json
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\myshop.BLL.csproj.Up2Date
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\myshop.BLL.dll
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\refint\myshop.BLL.dll
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\myshop.BLL.pdb
+C:\Users\amira\Desktop\ShopHub-Startup-Template\myshop.BLL\obj\Debug\net8.0\ref\myshop.BLL.dll

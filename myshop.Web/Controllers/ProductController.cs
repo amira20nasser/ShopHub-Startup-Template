@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using myshop.BLL.Abstraction;
 using myshop.DataAccess;
 using myshop.Entities.Models;
 using myshop.Entities.ViewModels;
@@ -10,12 +11,13 @@ namespace myshop.Web.Areas.Admin.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        //private readonly ApplicationDbContext _context;
+        private readonly IProductService _productService;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        public ProductController(IProductService productService, IWebHostEnvironment webHostEnvironment)
         {
-            _context = context;
+            _productService = productService;
             _webHostEnvironment = webHostEnvironment;
         }
 
@@ -27,17 +29,7 @@ namespace myshop.Web.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetData()
         {
-            var products = _context.Products
-                .Include(x => x.Category)
-                .Select(x => new
-                {
-                    id = x.Id,
-                    name = x.Name,
-                    description = x.Description,
-                    price = x.Price,
-                    categoryName = x.Category.Name
-                })
-                .ToList();
+            var products = _productService.GetWithCategory();
 
             return Json(new { data = products });
         }
@@ -83,6 +75,7 @@ namespace myshop.Web.Areas.Admin.Controllers
             }
             return View(productVM.Product);
         }
+
         [HttpGet]
         public IActionResult Edit(int? id)
         {

@@ -2,6 +2,7 @@
 using myshop.DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace myshop.DAL.Repos
@@ -14,9 +15,18 @@ namespace myshop.DAL.Repos
              await _dbSet.AddAsync(entity);
         }
 
-        public async Task<IReadOnlyList<TEntity>> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll(
+            Func<IQueryable<TEntity>, IQueryable<TEntity>>? include = null, 
+            Expression<Func<TEntity, bool>>? filter = null)
         {
-            return await _dbSet.ToListAsync();
+            IQueryable<TEntity> query = _dbSet;
+            if (include != null)
+                query = include(query);
+
+            if (filter != null)
+                query = query.Where(filter);
+
+            return await query.ToListAsync();
         }
 
         public async Task<TEntity?> GetById(TKey id)
