@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using myshop.Entities.Models;
+using myshop.BLL.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace myshop.Entities.ViewModels
 {
     public class ProductVM
     {
-        public Product Product { get; set; }
+        public ProductFormDto Product { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> CategoryList { get; set; }
     }

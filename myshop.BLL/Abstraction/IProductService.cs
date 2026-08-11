@@ -1,13 +1,18 @@
-﻿using myshop.BLL.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.AspNetCore.Http;
+using myshop.BLL.DTOs;
 
 namespace myshop.BLL.Abstraction
 {
     public interface IProductService
     {
-
         Task<IReadOnlyList<ProductDto>> GetWithCategory();
+
+        Task<ProductFormDto?> GetById(int id);
+
+        Task<ProductFormDto> Create(ProductFormDto productDto, IFormFile? file);
+
+        Task<bool> Edit(ProductFormDto productDto, IFormFile? file);
+
+        Task<bool> Delete(int id);
     }
 }

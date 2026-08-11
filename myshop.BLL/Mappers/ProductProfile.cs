@@ -12,8 +12,10 @@ namespace myshop.BLL.Mappers
     public class ProductProfile : Profile
     {       
         public ProductProfile()
-        {
+        {       
             CreateMap<Product, ProductDto>().ForMember(d =>d.CategoryName,s=>s.MapFrom(m=>m.Category.Name));
+
+            CreateMap<ProductFormDto, Product>().ReverseMap();
         }
     }
 }
