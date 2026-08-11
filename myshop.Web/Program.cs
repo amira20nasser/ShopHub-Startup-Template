@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using myshop.BLL.Abstraction;
 using myshop.DAL;
+using myshop.DAL.Data;
 using myshop.DataAccess;
 using myshop.Entities.Models;
 
@@ -16,10 +17,22 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 builder.Services.AddAutoMapper(cfg => { }, typeof(myshop.BLL.Mappers.ProductProfile).Assembly);
 
 builder.Services.AddIdentity<ApplicationUser,IdentityRole>(
-    options=>options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(4)
-    ).AddDefaultTokenProviders().AddDefaultUI()
+    options=>
+    {
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(4);
+        options.SignIn.RequireConfirmedEmail = true;
+    }).AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
+
+builder.Services.AddScoped<IAuthService, myshop.BLL.Services.AuthService>();
+builder.Services.AddScoped<IEmailService, myshop.BLL.Services.EmailService>();
+builder.Services.AddScoped<IUserService, myshop.BLL.Services.UserService>();
 builder.Services.AddScoped<IFileService, myshop.BLL.Services.FileService>();
 builder.Services.AddScoped<IUnitOfWork, myshop.DAL.UnitOfWork>();
 builder.Services.AddScoped<IProductService, myshop.BLL.Services.ProductService>();
@@ -36,7 +49,15 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.Migrate();
 }
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider
+        .GetRequiredService<RoleManager<IdentityRole>>();
+    var context = scope.ServiceProvider
+       .GetRequiredService<ApplicationDbContext>();
 
+    await DbInitializer.SeedAsync(context,roleManager);
+}
 
 
 

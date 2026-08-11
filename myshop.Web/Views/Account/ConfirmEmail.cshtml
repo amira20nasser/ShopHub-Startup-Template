@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Email Confirmation";
+    var success = ViewData["Success"] as bool? ?? false;
+    var statusMessage = ViewData["StatusMessage"] as string;
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<div class="row justify-content-center text-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-5">
+                @if (success)
+                {
+                    <i class="fa-solid fa-circle-check fa-3x text-success mb-3"></i>
+                }
+                else
+                {
+                    <i class="fa-solid fa-triangle-exclamation fa-3x text-danger mb-3"></i>
+                }
+                <h2 class="mb-3">@statusMessage</h2>
+
+                @if (success)
+                {
+                    <p class="text-muted">You can now sign in to your account.</p>
+                    <a asp-action="Login" class="btn btn-primary mt-3">Sign in</a>
+                }
+                else
+                {
+                    <a asp-action="Register" class="btn btn-primary mt-3">Register again</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

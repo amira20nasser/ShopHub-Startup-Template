@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using myshop.BLL.Abstraction;
 using myshop.BLL.DTOs;
+using myshop.DAL.Models;
+using System.Threading.Tasks;
 
 namespace myshop.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = Roles.Admin)]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
