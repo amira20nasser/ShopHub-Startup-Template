@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using myshop.BLL.DTOs;
 
 namespace myshop.BLL.Abstraction
 {
     public interface ICategoryService
     {
-        Task<IEnumerable<SelectListItem>> GetAllNames();
+        Task<IReadOnlyList<CategoryDto>> GetAll();
+
+        Task<CategoryDto?> GetById(int id);
+
+        Task<CategoryDto> Create(CategoryDto categoryDto);
+
+        Task<bool> Update(CategoryDto categoryDto);
+
+        Task<bool> Delete(int id);
     }
 }

@@ -38,7 +38,7 @@ namespace myshop.Web.Areas.Admin.Controllers
             ProductVM productVM = new ProductVM()
             {
                 Product = new ProductFormDto(),
-                CategoryList = await _categoryService.GetAllNames()
+                CategoryList = await GetCategoryList()
             };
             return View(productVM);
         }
@@ -53,7 +53,7 @@ namespace myshop.Web.Areas.Admin.Controllers
                 TempData["Create"] = "Item has Created Successfully";
                 return RedirectToAction("Index");
             }
-            productVM.CategoryList = await _categoryService.GetAllNames();
+            productVM.CategoryList = await GetCategoryList();
             return View(productVM);
         }
 
@@ -74,7 +74,7 @@ namespace myshop.Web.Areas.Admin.Controllers
             ProductVM productVM = new ProductVM()
             {
                 Product = product,
-                CategoryList = await _categoryService.GetAllNames()
+                CategoryList = await GetCategoryList()
             };
 
             return View(productVM);
@@ -95,7 +95,7 @@ namespace myshop.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            productVM.CategoryList = await _categoryService.GetAllNames();
+            productVM.CategoryList = await GetCategoryList();
             return View(productVM);
         }
         
@@ -115,6 +115,16 @@ namespace myshop.Web.Areas.Admin.Controllers
             }
 
             return Json(new { success = true, message = "file has been Deleted" });
+        }
+
+        private async Task<IEnumerable<SelectListItem>> GetCategoryList()
+        {
+            var categories = await _categoryService.GetAll();
+            return categories.Select(c => new SelectListItem
+            {
+                Value = c.Id.ToString(),
+                Text = c.Name
+            });
         }
     }
 }
