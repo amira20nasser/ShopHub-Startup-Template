@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using myshop.BLL.Abstraction;
@@ -5,6 +6,7 @@ using myshop.DAL;
 using myshop.DAL.Data;
 using myshop.DataAccess;
 using myshop.Entities.Models;
+using myshop.Web.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +30,13 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";
     options.AccessDeniedPath = "/Account/AccessDenied";
+});
+
+builder.Services.AddScoped<IAuthorizationHandler, ActiveAccountAuthorizationHandler>();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(Policies.ActiveAccount, policy =>
+        policy.Requirements.Add(new ActiveAccountRequirement()));
 });
 
 builder.Services.AddScoped<IAuthService, myshop.BLL.Services.AuthService>();
