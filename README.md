@@ -2,9 +2,13 @@
 
 A clean ASP.NET Core MVC startup template designed for students to build E-Commerce projects using the Repository Pattern and Entity Framework Core.
 
-## Video Tutorial
+## Screenshots
 
-🎥 Video Tutorial (in Arabic): [**Add link here**](#)
+| | |
+|---|---|
+| ![Screenshot 1](demo/1.png) | ![Screenshot 2](demo/2.png) |
+| ![Screenshot 3](demo/3.png) | ![Screenshot 4](demo/4.png) |
+| ![Screenshot 5](demo/5.png) | ![Screenshot 6](demo/6.png) |
 
 ## Features
 
