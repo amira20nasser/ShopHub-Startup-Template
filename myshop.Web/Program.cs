@@ -48,6 +48,7 @@ builder.Services.AddScoped<IProductService, myshop.BLL.Services.ProductService>(
 builder.Services.AddScoped<ICategoryService, myshop.BLL.Services.CategoryService>();
 builder.Services.AddScoped<ICartService, myshop.BLL.Services.CartService>();
 
+builder.Services.AddMemoryCache();
 builder.Services.AddHttpContextAccessor();
 
 

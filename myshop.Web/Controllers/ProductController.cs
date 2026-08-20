@@ -28,11 +28,10 @@ namespace myshop.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetData()
+        public async Task<IActionResult> GetData([FromQuery] ProductQueryDto query)
         {
-            var products = await _productService.GetWithCategory();
-
-            return Json(new { data = products });
+            var result = await _productService.GetPagedAsync(query);
+            return Json(result);
         }
 
         [HttpGet]

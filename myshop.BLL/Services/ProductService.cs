@@ -94,5 +94,53 @@ namespace myshop.BLL.Services
 
             return mapper.Map<IReadOnlyList<ProductDto>>(products);
         }
+
+        public async Task<PagedResultDto<ProductDto>> GetPagedAsync(ProductQueryDto query)
+        {
+            var productRepo = unitOfWork.GetRepository<Product, int>();
+            var queryable = productRepo.GetQueryable()
+                .Include(p => p.Category);
+
+            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
+            {
+                var term = query.SearchTerm.ToLower();
+                queryable = queryable.Where(p =>
+                    p.Name.ToLower().Contains(term) ||
+                    (p.Description != null && p.Description.ToLower().Contains(term)));
+            }
+
+            queryable = (query.SortBy?.ToLower(), query.SortOrder?.ToLower()) switch
+            {
+                ("name", "desc") => queryable.OrderByDescending(p => p.Name),
+                ("name", "asc") => queryable.OrderBy(p => p.Name),
+                ("price", "desc") => queryable.OrderByDescending(p => p.Price),
+                ("price", "asc") => queryable.OrderBy(p => p.Price),
+                _ => queryable.OrderBy(p => p.Name)
+            };
+
+            var totalItems = await queryable.CountAsync();
+
+            var items = await queryable
+                .Skip((query.PageNumber - 1) * query.PageSize)
+                .Take(query.PageSize)
+                .Select(p => new ProductDto
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    Img = p.Img,
+                    Price = p.Price,
+                    CategoryName = p.Category.Name
+                })
+                .ToListAsync();
+
+            return new PagedResultDto<ProductDto>
+            {
+                Items = items,
+                PageNumber = query.PageNumber,
+                PageSize = query.PageSize,
+                TotalItems = totalItems
+            };
+        }
     }
 }

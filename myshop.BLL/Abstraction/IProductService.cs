@@ -6,6 +6,7 @@ namespace myshop.BLL.Abstraction
     public interface IProductService
     {
         Task<IReadOnlyList<ProductDto>> GetWithCategory();
+        Task<PagedResultDto<ProductDto>> GetPagedAsync(ProductQueryDto query);
 
         Task<ProductFormDto?> GetById(int id);
 

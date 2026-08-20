@@ -34,6 +34,11 @@ namespace myshop.DAL.Repos
             return await _dbSet.FindAsync(id);
         }
 
+        public IQueryable<TEntity> GetQueryable()
+        {
+            return _dbSet.AsQueryable();
+        }
+
         public void Remove(TEntity entity)
         {
             _dbSet.Remove(entity);

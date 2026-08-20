@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -11,6 +12,8 @@ namespace myshop.DAL.Repos
             Func<IQueryable<TEntity>, IQueryable<TEntity>>? include = null,
             Expression<Func<TEntity, bool>>? filter = null);
         Task<TEntity?> GetById(TKey id);
+
+        IQueryable<TEntity> GetQueryable();
 
         Task AddAsync(TEntity entity);
 
