@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Http;
 using myshop.BLL.Abstraction;
 
 namespace myshop.BLL.Services;
-public class FileService : IFileService
+public class LocalFileService : IFileService
 {
     private readonly IWebHostEnvironment _webHostEnvironment;
+    private static readonly string[] AllowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
+    private const long MaxFileSize = 2 * 1024 * 1024;
 
-    public FileService(IWebHostEnvironment webHostEnvironment)
+    public LocalFileService(IWebHostEnvironment webHostEnvironment)
     {
         _webHostEnvironment = webHostEnvironment;
     }
@@ -19,6 +21,16 @@ public class FileService : IFileService
         if (file == null || file.Length == 0)
             return null;
 
+        var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+
+        if (!AllowedExtensions.Contains(extension))
+            throw new InvalidOperationException(
+                $"Invalid file type. Only {string.Join(", ", AllowedExtensions)} files are allowed.");
+
+        if (file.Length > MaxFileSize)
+            throw new InvalidOperationException(
+                $"File size exceeds the 2 MB limit. Your file is {file.Length / (1024.0 * 1024.0):F2} MB.");
+
         var rootPath = _webHostEnvironment.WebRootPath;
 
         var uploadPath = Path.Combine(rootPath, folderName);
@@ -27,7 +39,6 @@ public class FileService : IFileService
             Directory.CreateDirectory(uploadPath);
 
         var fileName = Guid.NewGuid().ToString();
-        var extension = Path.GetExtension(file.FileName);
 
         var filePath = Path.Combine(
             uploadPath,

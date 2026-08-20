@@ -163,7 +163,7 @@
             </form>
 
             <div class="mt-4 text-center">
-                <img id="ImagePreview" src="~/@Model.Product.Img" />
+                <img id="ImagePreview" src="@(string.IsNullOrEmpty(Model.Product.Img) ? Url.Content("~/img/default-150x150.png") : Url.Content("~/" + Model.Product.Img))" />
             </div>
 
         </div>

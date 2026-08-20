@@ -10,7 +10,7 @@ namespace myshop.BLL.Services
 {
     public class ProductService(IUnitOfWork unitOfWork, IMapper mapper, IFileService fileService) : IProductService
     {
-        private const string ImagesFolder = "Images/Products";
+        private const string ImagesFolder = "uploads/products";
 
         public async Task<ProductFormDto> Create(ProductFormDto productDto, IFormFile? file)
         {
@@ -69,10 +69,11 @@ namespace myshop.BLL.Services
             if (product == null)
                 return false;
 
+            fileService.DeleteFile(product.Img);
+
             productRepo.Remove(product);
             await unitOfWork.SaveChangesAsync();
 
-            fileService.DeleteFile(product.Img);
             return true;
         }
 

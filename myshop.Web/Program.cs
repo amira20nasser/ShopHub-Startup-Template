@@ -42,7 +42,7 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddScoped<IAuthService, myshop.BLL.Services.AuthService>();
 builder.Services.AddScoped<IEmailService, myshop.BLL.Services.EmailService>();
 builder.Services.AddScoped<IUserService, myshop.BLL.Services.UserService>();
-builder.Services.AddScoped<IFileService, myshop.BLL.Services.FileService>();
+builder.Services.AddScoped<IFileService, myshop.BLL.Services.LocalFileService>();
 builder.Services.AddScoped<IUnitOfWork, myshop.DAL.UnitOfWork>();
 builder.Services.AddScoped<IProductService, myshop.BLL.Services.ProductService>();
 builder.Services.AddScoped<ICategoryService, myshop.BLL.Services.CategoryService>();

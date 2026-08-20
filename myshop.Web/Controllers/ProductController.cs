@@ -49,13 +49,31 @@ namespace myshop.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductVM productVM, IFormFile? file)
         {
-            if (ModelState.IsValid)
+            if (file != null)
             {
-               await _productService.Create(productVM.Product,file);
+                try
+                {
+                    await _productService.Create(productVM.Product, file);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    ModelState.AddModelError("file", ex.Message);
+                    productVM.CategoryList = await GetCategoryList();
+                    return View(productVM);
+                }
 
                 TempData["Create"] = "Item has Created Successfully";
                 return RedirectToAction("Index");
             }
+
+            if (ModelState.IsValid)
+            {
+                await _productService.Create(productVM.Product, file);
+
+                TempData["Create"] = "Item has Created Successfully";
+                return RedirectToAction("Index");
+            }
+
             productVM.CategoryList = await GetCategoryList();
             return View(productVM);
         }
@@ -86,13 +104,30 @@ namespace myshop.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(ProductVM productVM, IFormFile? file)
         {
+            if (file != null)
+            {
+                try
+                {
+                    var updated = await _productService.Edit(productVM.Product, file);
+                    if (!updated)
+                        return NotFound();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    ModelState.AddModelError("file", ex.Message);
+                    productVM.CategoryList = await GetCategoryList();
+                    return View(productVM);
+                }
+
+                TempData["Update"] = "Data has Updated Successfully";
+                return RedirectToAction("Index");
+            }
+
             if (ModelState.IsValid)
             {
                 var updated = await _productService.Edit(productVM.Product, file);
                 if (!updated)
-                {
                     return NotFound();
-                }
 
                 TempData["Update"] = "Data has Updated Successfully";
                 return RedirectToAction("Index");

@@ -7,6 +7,15 @@
             dataSrc: "data"
         },
         columns: [
+            {
+                data: "img",
+                orderable: false,
+                searchable: false,
+                render: function (img) {
+                    var src = img ? '/' + img : '/img/default-150x150.png';
+                    return '<img src="' + src + '" style="width:60px;height:60px;object-fit:cover;border-radius:6px;" />';
+                }
+            },
             { data: "name" },
             { data: "description" },
             { data: "price" },
