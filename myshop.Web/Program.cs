@@ -46,6 +46,7 @@ builder.Services.AddScoped<IFileService, myshop.BLL.Services.LocalFileService>()
 builder.Services.AddScoped<IUnitOfWork, myshop.DAL.UnitOfWork>();
 builder.Services.AddScoped<IProductService, myshop.BLL.Services.ProductService>();
 builder.Services.AddScoped<ICategoryService, myshop.BLL.Services.CategoryService>();
+builder.Services.AddScoped<ICartService, myshop.BLL.Services.CartService>();
 
 builder.Services.AddHttpContextAccessor();
 
